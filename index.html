@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Coming Soon</title>
 
+  <!-- Preload animation JSON -->
+  <link rel="preload" href="/assets/gif.json" as="fetch" crossorigin="anonymous">
+
+  <!-- Lightweight Lottie -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
 
   <style>
@@ -20,9 +24,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #fff;
-      padding: 20px;
+      background: #ffffff;
       text-align: center;
+      padding: 20px;
     }
 
     .container {
@@ -35,36 +39,34 @@
       margin-bottom: 16px;
     }
 
-    .animation {
+    #lottie {
       width: 100%;
-      max-width: 300px;
+      height: 240px;
       margin: 0 auto;
     }
 
-    h1 {
+    h2 {
+      margin-top: 20px;
       font-size: 28px;
       font-weight: 700;
-      margin-top: 20px;
-      color: #111;
+      color: #111827;
     }
 
     .footer {
       margin-top: 20px;
       font-size: 12px;
-      color: #888;
+      color: #9ca3af;
     }
 
-    @media (min-width: 768px) {
-      .container {
-        max-width: 600px;
-      }
+    /* Smooth fade-in */
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 0.5s ease forwards;
+    }
 
-      .animation {
-        max-width: 400px;
-      }
-
-      h1 {
-        font-size: 42px;
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
       }
     }
   </style>
@@ -72,28 +74,34 @@
 
 <body>
 
-  <div class="container">
+  <div class="container fade-in">
 
-    <!-- FIXED LOGO PATH -->
-    <img src="/assets/logo.png" class="logo" alt="">
+    <!-- LOGO -->
+    <img src="/assets/logo.png" class="logo" alt="Pixel Frames Logo">
 
-    <!-- LOTTIE (Make sure file exists) -->
-    <lottie-player
-      src="/assets/gif.json"
-      class="animation"
-      background="transparent"
-      speed="1"
-      loop
-      autoplay>
-    </lottie-player>
+    <!-- LOTTIE CONTAINER -->
+    <div id="lottie"></div>
 
+    <!-- HEADING -->
     <h2>Coming Soon</h2>
 
+    <!-- FOOTER -->
     <div class="footer">
       © 2026 Pixel Frames. All rights reserved.
     </div>
 
   </div>
+
+  <script>
+    // Load Lottie instantly
+    lottie.loadAnimation({
+      container: document.getElementById("lottie"),
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      path: "/assets/gif.json"
+    });
+  </script>
 
 </body>
 </html>
