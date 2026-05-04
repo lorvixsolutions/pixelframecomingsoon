@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Coming Soon</title>
 
-  <!-- Preload animation -->
+  <!-- Faster asset loading -->
+  <link rel="preload" href="/assets/Logo.jpeg" as="image" fetchpriority="high">
   <link rel="preload" href="/assets/gif.json" as="fetch" crossorigin="anonymous">
 
-  <!-- Lottie (fast render) -->
+  <!-- Faster than lottie-player -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
 
   <style>
@@ -16,18 +18,24 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: "Inter", Arial, sans-serif;
+      font-family: Arial, sans-serif;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      background: #ffffff;
     }
 
     body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #ffffff;
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
       text-align: center;
-      padding: 20px;
+      padding: 16px;
       color: #111827;
+      overflow-x: hidden;
     }
 
     .container {
@@ -36,89 +44,104 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      animation: fadeIn 0.5s ease;
+      gap: 12px;
     }
 
-    /* 🔥 BIG RESPONSIVE LOGO */
     .logo {
-      width: clamp(180px, 50vw, 360px);
-      margin-bottom: 24px;
+      width: clamp(190px, 58vw, 360px);
+      max-width: 92%;
+      height: auto;
+      display: block;
+      object-fit: contain;
     }
 
-    /* 🎬 Animation */
     #lottie {
       width: 100%;
-      max-width: 450px;
-      height: clamp(200px, 35vh, 320px);
+      max-width: 420px;
+      height: clamp(190px, 32vh, 290px);
     }
 
-    /* 🔥 MAIN TEXT */
     h2 {
-      margin-top: 20px;
-      font-size: clamp(32px, 7vw, 56px);
+      font-size: clamp(34px, 8vw, 56px);
+      line-height: 1.05;
       font-weight: 800;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.04em;
+      color: #111827;
     }
 
     .footer {
-      margin-top: 20px;
-      font-size: 13px;
+      margin-top: 6px;
+      font-size: clamp(12px, 3.4vw, 14px);
       color: #9ca3af;
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* 📱 Small screen tweaks */
     @media (max-width: 480px) {
+      .container {
+        gap: 10px;
+      }
+
       .logo {
-        width: 65vw;
+        width: 72vw;
       }
 
       #lottie {
-        height: 220px;
+        height: 210px;
+      }
+    }
+
+    @media (max-height: 680px) {
+      #lottie {
+        height: 180px;
+      }
+
+      .logo {
+        width: clamp(170px, 48vw, 300px);
+      }
+
+      h2 {
+        font-size: clamp(30px, 7vw, 48px);
       }
     }
   </style>
 </head>
 
 <body>
+  <main class="container">
 
-  <div class="container">
+    <img
+      src="/assets/Logo.jpeg"
+      class="logo"
+      alt="Pixel Frames Logo"
+      width="360"
+      height="180"
+      loading="eager"
+      decoding="sync"
+      fetchpriority="high"
+    />
 
-    <!-- ✅ LOGO -->
-    <img src="/assets/Logo.jpeg" class="logo" alt="Pixel Frames Logo">
-
-    <!-- ✅ LOTTIE -->
     <div id="lottie"></div>
 
-    <!-- ✅ HEADING -->
     <h2>Coming Soon</h2>
 
-    <!-- ✅ FOOTER -->
     <div class="footer">
       © 2026 Pixel Frames. All rights reserved.
     </div>
 
-  </div>
+  </main>
 
   <script>
-    lottie.loadAnimation({
-      container: document.getElementById("lottie"),
-      renderer: "svg",
-      loop: true,
-      autoplay: true,
-      path: "/assets/gif.json"
+    window.addEventListener("DOMContentLoaded", function () {
+      lottie.loadAnimation({
+        container: document.getElementById("lottie"),
+        renderer: "svg",
+        loop: true,
+        autoplay: true,
+        path: "/assets/gif.json",
+        rendererSettings: {
+          progressiveLoad: true
+        }
+      });
     });
   </script>
-
 </body>
 </html>
