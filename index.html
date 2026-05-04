@@ -1,55 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Coming Soon</title>
 
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
   <style>
-    body {
+    * {
       margin: 0;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: #ffffff;
-      font-family: Arial, sans-serif;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Inter", Arial, sans-serif;
     }
 
-    img {
-      width: 140px;
-      margin-bottom: 10px;
+    body {
+      min-height: 100vh;
+      background: #ffffff; /* pure white */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #1f2937;
+    }
+
+    .logo {
+      width: 150px;
+      max-width: 70%;
+      margin-bottom: 20px;
     }
 
     lottie-player {
-      width: 280px; /* controlled size */
+      width: 300px;
+      max-width: 100%;
+      margin: 0 auto 10px;
     }
 
-    p {
-      margin-top: 12px;
-      font-size: 18px;
-      color: #333;
-      letter-spacing: 1px;
+    h1 {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 800;
+      margin-top: 10px;
+      color: #111827;
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #9ca3af;
     }
   </style>
 </head>
 
 <body>
 
-  <img src="assets/logo.png">
+  <div>
+    <img src="assets/logo.png" class="logo" />
 
-  <lottie-player
-    src="assets/gif.json"
-    background="transparent"
-    speed="1"
-    loop
-    autoplay>
-  </lottie-player>
+    <lottie-player
+      src="assets/gif.json"
+      background="transparent"
+      speed="1"
+      loop
+      autoplay>
+    </lottie-player>
 
-  <p>Coming Soon</p>
+    <h1>Coming Soon</h1>
+
+    <div class="footer">
+      © 2026 Pixel Frames. All rights reserved.
+    </div>
+  </div>
 
 </body>
 </html>
