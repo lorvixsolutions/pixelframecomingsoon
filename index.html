@@ -17,45 +17,113 @@
 
     body {
       min-height: 100vh;
-      background: #ffffff; /* pure white */
+      background: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       color: #1f2937;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 620px;
+      animation: fadeIn 0.8s ease;
     }
 
     .logo {
-      width: 150px;
+      width: clamp(100px, 30vw, 150px);
       max-width: 70%;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     lottie-player {
-      width: 600px;
-      max-width: 100%;
-      margin: 0 auto 10px;
+      width: min(100%, 430px);
+      height: auto;
+      margin: 0 auto;
+      display: block;
     }
 
     h1 {
-      font-size: clamp(32px, 5vw, 56px);
+      font-size: clamp(30px, 7vw, 52px);
       font-weight: 800;
-      margin-top: 10px;
+      margin-top: 18px;
       color: #111827;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+
+    .tagline {
+      margin: 12px auto 0;
+      max-width: 420px;
+      font-size: clamp(14px, 3.5vw, 17px);
+      line-height: 1.6;
+      color: #6b7280;
     }
 
     .footer {
-      margin-top: 20px;
-      font-size: 14px;
+      margin-top: 32px;
+      font-size: 13px;
       color: #9ca3af;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 16px;
+        align-items: center;
+      }
+
+      .logo {
+        margin-bottom: 12px;
+      }
+
+      lottie-player {
+        width: min(100%, 320px);
+      }
+
+      h1 {
+        margin-top: 14px;
+      }
+
+      .footer {
+        margin-top: 26px;
+        font-size: 12px;
+      }
+    }
+
+    @media (max-height: 650px) {
+      body {
+        align-items: flex-start;
+        padding-top: 28px;
+      }
+
+      lottie-player {
+        width: min(100%, 280px);
+      }
+
+      .footer {
+        margin-top: 22px;
+      }
     }
   </style>
 </head>
 
 <body>
-
-  <div>
-    <img src="assets/logo.png" class="logo" alt="" />
+  <main class="container">
+    <img src="assets/logo.png" class="logo" alt="Pixel Frames Logo" />
 
     <lottie-player
       src="assets/gif.json"
@@ -69,6 +137,10 @@
 
     <div class="footer">
       © 2026 Pixel Frames. All rights reserved.
+    </div>
+  </main>
+</body>
+</html>      © 2026 Pixel Frames. All rights reserved.
     </div>
   </div>
 
